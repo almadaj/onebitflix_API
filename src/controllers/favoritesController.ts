@@ -2,7 +2,7 @@ import { AuthenticatedRequest } from "../middlewares/auth";
 import { favoriteService } from "../services/favoriteService";
 import { Response } from "express";
 
-export const favoriteController = {
+export const favoritesController = {
   // GET /favorites
   index: async (req: AuthenticatedRequest, res: Response) => {
     const userId = req.user!.id;

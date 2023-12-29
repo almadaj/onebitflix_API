@@ -1,5 +1,4 @@
 "use strict";
-
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("watch_times", {
@@ -17,6 +16,7 @@ module.exports = {
       },
       episode_id: {
         allowNull: false,
+        primaryKey: true,
         type: Sequelize.DataTypes.INTEGER,
         references: { model: "episodes", key: "id" },
         onUpdate: "CASCADE",

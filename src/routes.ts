@@ -1,11 +1,12 @@
 import express from "express";
+import { authController } from "./controllers/authController";
 import { categoriesController } from "./controllers/categoriesController";
 import { coursesController } from "./controllers/coursesController";
 import { episodesController } from "./controllers/episodesController";
-import { authController } from "./controllers/authController";
-import { ensureAuth, ensureAuthViaQuery } from "./middlewares/auth";
-import { favoriteController } from "./controllers/favoriteController";
+import { favoritesController } from "./controllers/favoritesController";
 import { likesController } from "./controllers/likesController";
+import { usersController } from "./controllers/usersController";
+import { ensureAuth, ensureAuthViaQuery } from "./middlewares/auth";
 
 const router = express.Router();
 
@@ -33,11 +34,13 @@ router.post(
   episodesController.setWatchTime
 );
 
-router.get("/favorites", ensureAuth, favoriteController.index);
-router.post("/favorites", ensureAuth, favoriteController.save);
-router.delete("/favorites/:id", ensureAuth, favoriteController.delete);
+router.get("/favorites", ensureAuth, favoritesController.index);
+router.post("/favorites", ensureAuth, favoritesController.save);
+router.delete("/favorites", ensureAuth, favoritesController.delete);
 
 router.post("/likes", ensureAuth, likesController.save);
-router.delete("/likes/:id", ensureAuth, likesController.delete);
+router.delete("/likes", ensureAuth, likesController.delete);
+
+router.get("/users/current/watching", ensureAuth, usersController.watching);
 
 export { router };
