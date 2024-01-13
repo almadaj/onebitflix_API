@@ -36,10 +36,10 @@ router.post(
 
 router.get("/favorites", ensureAuth, favoritesController.index);
 router.post("/favorites", ensureAuth, favoritesController.save);
-router.delete("/favorites", ensureAuth, favoritesController.delete);
+router.delete("/favorites/:id", ensureAuth, favoritesController.delete);
 
 router.post("/likes", ensureAuth, likesController.save);
-router.delete("/likes", ensureAuth, likesController.delete);
+router.delete("/likes/:id", ensureAuth, likesController.delete);
 
 router.get("/users/current", ensureAuth, usersController.show);
 router.put("/users/current", ensureAuth, usersController.update);
